@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1360" font-family="Courier New, monospace" font-weight="bold">
+  <style>
+    .box { fill: #ffffff; stroke: #000000; stroke-width: 3; }
+    .dash { fill: none; stroke: #000000; stroke-width: 3; stroke-dasharray: 8 6; }
+    .line { stroke: #000000; stroke-width: 3; fill: none; }
+    .lbl { font-size: 24px; text-anchor: middle; }
+    .lbl-sm { font-size: 20px; text-anchor: middle; }
+    .pin { font-size: 22px; text-anchor: middle; }
+  </style>
+
+  <!-- Outer border -->
+  <rect x="10" y="70" width="980" height="1230" class="box" />
+
+  <!-- Top pin labels -->
+  <text x="175" y="50" class="lbl" font-size="34">B&#160;&#160;&#160;&#160;A</text>
+  <text x="500" y="28" class="lbl" font-size="30">AI 0-10V</text>
+  <text x="500" y="60" class="lbl" font-size="26">C&#160;&#160;4&#160;&#160;3&#160;&#160;2&#160;&#160;1</text>
+
+  <!-- ===== Column 1: RS485 ===== -->
+  <rect x="100" y="90" width="150" height="55" class="box" />
+  <text x="175" y="125" class="lbl">RS485</text>
+
+  <rect x="30" y="145" width="290" height="120" class="box" />
+  <text x="175" y="195" class="lbl-sm">OVER VOLTAGE &amp;</text>
+  <text x="175" y="225" class="lbl-sm">SURGE PROTECTION</text>
+
+  <rect x="30" y="265" width="290" height="120" class="box" />
+  <text x="175" y="315" class="lbl">RS485</text>
+  <text x="175" y="345" class="lbl">TRANSCIEVER</text>
+
+  <rect x="30" y="385" width="290" height="60" class="box" />
+  <text x="175" y="423" class="lbl">ISOLATION</text>
+
+  <!-- ===== Column 2: Analog Input ===== -->
+  <rect x="380" y="90" width="240" height="55" class="box" />
+  <text x="500" y="125" class="lbl">ANALOG INPUT</text>
+
+  <rect x="350" y="145" width="300" height="120" class="box" />
+  <text x="500" y="195" class="lbl-sm">OVER VOLTAGE &amp;</text>
+  <text x="500" y="225" class="lbl-sm">SURGE PROTECTION</text>
+
+  <rect x="350" y="265" width="300" height="60" class="box" />
+  <text x="500" y="303" class="lbl">NOISE FILTER</text>
+
+  <rect x="350" y="325" width="300" height="60" class="box" />
+  <text x="500" y="350" class="lbl-sm">16BIT &#916;&#931;ADC</text>
+  <text x="500" y="375" class="lbl-sm">860 SPS</text>
+
+  <rect x="350" y="385" width="300" height="60" class="box" />
+  <text x="500" y="423" class="lbl">ISOLATION</text>
+
+  <!-- ===== Column 3: USB ===== -->
+  <rect x="850" y="90" width="100" height="55" class="box" />
+  <text x="900" y="125" class="lbl">USB</text>
+
+  <rect x="680" y="145" width="290" height="240" class="box" />
+  <text x="825" y="245" class="lbl-sm">USB 2.0 TO</text>
+  <text x="825" y="275" class="lbl-sm">SERIAL - FT232RL</text>
+
+  <!-- ===== Pin connectors above ESP32 ===== -->
+  <!-- IO16 / IO17 from RS485 isolation, jogged right -->
+  <path d="M 110 445 L 110 480 L 380 480 L 380 560" class="line" />
+  <path d="M 240 445 L 240 500 L 420 500 L 420 560" class="line" />
+  <!-- IO21 / IO22 from Analog isolation, straight down -->
+  <path d="M 460 445 L 460 560" class="line" />
+  <path d="M 560 445 L 560 560" class="line" />
+  <!-- RXD0 / TXD0 from USB block -->
+  <path d="M 850 385 L 850 560" class="line" />
+  <path d="M 910 385 L 910 560" class="line" />
+
+  <text x="380" y="555" class="pin" transform="rotate(-90 380 555)">IO16</text>
+  <text x="420" y="555" class="pin" transform="rotate(-90 420 555)">IO17</text>
+  <text x="460" y="555" class="pin" transform="rotate(-90 460 555)">IO21</text>
+  <text x="560" y="555" class="pin" transform="rotate(-90 560 555)">IO22</text>
+  <text x="850" y="555" class="pin" transform="rotate(-90 850 555)">RXD0</text>
+  <text x="910" y="555" class="pin" transform="rotate(-90 910 555)">TXD0</text>
+
+  <!-- ===== ESP32 Core ===== -->
+  <rect x="30" y="560" width="940" height="260" class="box" />
+  <text x="500" y="605" class="lbl" font-size="30">ESP32-WRROM-32 CORE</text>
+
+  <rect x="370" y="625" width="300" height="160" class="dash" />
+  <text x="520" y="675" class="lbl-sm">Tensilica Xtensa</text>
+  <text x="520" y="705" class="lbl-sm">Dual-Core 32-bit</text>
+  <text x="520" y="735" class="lbl-sm">LX6 MCU</text>
+
+  <rect x="700" y="625" width="240" height="160" class="dash" />
+
+  <!-- ===== Pin connectors below ESP32 ===== -->
+  <path d="M 420 820 L 420 900" class="line" />
+  <path d="M 470 820 L 470 900" class="line" />
+  <path d="M 800 820 L 800 900" class="line" />
+  <path d="M 850 820 L 850 900" class="line" />
+  <path d="M 900 820 L 900 900" class="line" />
+
+  <text x="420" y="895" class="pin" transform="rotate(-90 420 895)">IO27</text>
+  <text x="470" y="895" class="pin" transform="rotate(-90 470 895)">IO14</text>
+  <text x="800" y="895" class="pin" transform="rotate(-90 800 895)">IO26</text>
+  <text x="850" y="895" class="pin" transform="rotate(-90 850 895)">IO33</text>
+  <text x="900" y="895" class="pin" transform="rotate(-90 900 895)">IO32</text>
+
+  <!-- ===== Power Supply (dashed, bottom-left) ===== -->
+  <rect x="30" y="820" width="290" height="435" class="dash" />
+  <text x="175" y="860" class="lbl">POWER SUPPLY</text>
+
+  <rect x="50" y="875" width="250" height="60" class="box" />
+  <text x="175" y="913" class="lbl">ISOLATION</text>
+
+  <rect x="50" y="935" width="250" height="60" class="box" />
+  <text x="175" y="973" class="lbl">FILTER</text>
+
+  <rect x="50" y="995" width="250" height="75" class="box" />
+  <text x="175" y="1028" class="lbl">DC to DC</text>
+  <text x="175" y="1056" class="lbl">CONVERTER</text>
+
+  <rect x="50" y="1070" width="250" height="60" class="box" />
+  <text x="175" y="1108" class="lbl">FILTER</text>
+
+  <rect x="50" y="1130" width="250" height="75" class="box" />
+  <text x="175" y="1163" class="lbl">REVERSE</text>
+  <text x="175" y="1191" class="lbl">PROTECTION</text>
+
+  <rect x="80" y="1205" width="190" height="50" class="box" />
+  <text x="175" y="1240" class="lbl">DC 24V</text>
+
+  <!-- ===== Middle: Relay Isolation ===== -->
+  <rect x="350" y="900" width="300" height="240" class="box" />
+  <text x="500" y="1028" class="lbl">ISOLATION</text>
+
+  <rect x="350" y="1140" width="145" height="55" class="box" />
+  <text x="422" y="1175" class="lbl">RELAY1</text>
+
+  <rect x="505" y="1140" width="145" height="55" class="box" />
+  <text x="577" y="1175" class="lbl">RELAY2</text>
+
+  <!-- ===== Right: Digital Input chain ===== -->
+  <rect x="680" y="900" width="290" height="60" class="box" />
+  <text x="825" y="938" class="lbl">ISOLATION</text>
+
+  <rect x="680" y="960" width="290" height="60" class="box" />
+  <text x="825" y="998" class="lbl">NOISE FILTER</text>
+
+  <rect x="680" y="1020" width="290" height="120" class="box" />
+  <text x="825" y="1070" class="lbl-sm">OVER VOLTAGE &amp;</text>
+  <text x="825" y="1100" class="lbl-sm">SURGE PROTECTION</text>
+
+  <rect x="750" y="1140" width="160" height="55" class="box" />
+  <text x="830" y="1175" class="lbl">DIGITAL INPUT</text>
+
+  <!-- ===== Bottom pin labels (below border) ===== -->
+  <text x="175" y="1320" class="lbl" font-size="30">+&#160;&#160;&#160;&#160;G</text>
+  <text x="422" y="1320" class="lbl" font-size="26">NO&#160;&#160;C</text>
+  <text x="577" y="1320" class="lbl" font-size="26">NO&#160;&#160;C</text>
+  <text x="830" y="1320" class="lbl" font-size="28">C&#160;&#160;1&#160;&#160;2&#160;&#160;3</text>
+</svg>

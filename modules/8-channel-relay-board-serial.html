@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8 Channel Relay Board - Serial - RDL Technologies Pvt Ltd</title>
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/cards.css" />
+</head>
+<body>
+
+  <!-- ===== Navbar ===== -->
+  <nav class="navbar">
+    <a href="../index.html" class="logo">
+      <img src="../images/logo.png" alt="Logo" onerror="this.style.display='none'" />
+      RDL Technologies Pvt Ltd
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="../data-logger/index.html">Data Logger</a></li>
+      <li><a href="../cloud-plc/index.html">Cloud PLC</a></li>
+      <li><a href="../development-board/index.html">Development Board</a></li>
+      <li><a href="../modules/index.html" class="active">Modules</a></li>
+      <li><a href="../sensors/index.html">Sensors</a></li>
+      <li><a href="../biometrics/index.html">Biometrics</a></li>
+      <li><a href="../lifi/index.html">LiFi</a></li>
+    </ul>
+
+    <button class="hamburger" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ===== Page Content ===== -->
+  <main class="page-content">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a> &gt;
+      <a href="index.html">Modules</a> &gt;
+      8 Channel Relay Board - Serial
+    </div>
+
+    <div class="product-detail">
+      <!-- ===== Image Gallery ===== -->
+      <div class="product-gallery">
+        <div class="main-image">
+          <img src="../images/modules/relay_board_serial_main.jpg" alt="8 Channel Relay Board - Serial" />
+        </div>
+        <div class="thumb-row">
+          <img src="../images/modules/relay_board_serial_main.jpg" alt="8 Channel Relay Board - Serial" class="active" />
+          <img src="../images/modules/relay_board_serial_view2.jpg" alt="8 Channel Relay Board - Serial - View 2" />
+          <img src="../images/modules/relay_board_serial_view3.jpg" alt="8 Channel Relay Board - Serial - View 3" />
+          <img src="../images/modules/relay_board_serial_view4.jpg" alt="8 Channel Relay Board - Serial - View 4" />
+          <img src="../images/modules/relay_board_serial_view5.jpg" alt="8 Channel Relay Board - Serial - View 5" />
+        </div>
+      </div>
+
+      <!-- ===== Product Info ===== -->
+      <div class="product-info">
+        <h1>8 Channel Relay Board - Serial</h1>
+        <div class="order-code">Order Code: RDL/8RB-S/14/001/V1.0</div>
+
+        <p>A serially-controlled relay module featuring 8 SPDT relays rated at 7A each, enabling direct control of
+        multiple 230V/120V devices. Ideal for automation and hobby projects.</p>
+
+        
+
+        <div class="buy-actions">
+          <a href="tel:+918088423347"><button type="button">Contact Us</button></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-tabs">
+      <button class="tab-btn active" data-tab="description">Product Description</button>
+      <button class="tab-btn" data-tab="related">Related Products</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-description">
+    <!-- ===== Key Features ===== -->
+    <section class="content-section">
+      <h2>Key Features</h2>
+      <ul>
+        <li>8 SPDT relay channels (7A 250V, 12A 120V, 10A 125VAC, 10A 28VDC)</li>
+        <li>12VDC 2AMP power supply</li>
+        <li>400mA current consumption</li>
+        <li>ULN2803 IC driver design</li>
+        <li>TTL output with status LEDs</li>
+        <li>High-quality FR4 PCB with FPT certification</li>
+      </ul>
+    </section>
+
+    <!-- ===== Specifications ===== -->
+    <section class="content-section">
+      <h2>Specifications</h2>
+      <table>
+        <tr><th>Specification</th><th>Details</th></tr>
+        <tr><td>Relay Type</td><td>SPDT (Single Pole Double Throw)</td></tr>
+        <tr><td>Relay Rating</td><td>7A @ 250V AC</td></tr>
+        <tr><td>Power Supply</td><td>12VDC, 2AMP</td></tr>
+        <tr><td>Current Draw</td><td>400mA</td></tr>
+      </table>
+    </section>
+
+    <!-- ===== Applications ===== -->
+    <section class="content-section">
+      <h2>Applications</h2>
+      <ul>
+        <li>Home automation</li>
+        <li>Hobby projects</li>
+        <li>Industrial automation</li>
+      </ul>
+    </section>
+
+    <!-- ===== I/O Connections ===== -->
+    <section class="content-section">
+      <h2>I/O Connections</h2>
+
+      <h3>Arduino</h3>
+      <div class="diagram-block">
+        <img class="diagram-image" src="../images/modules/relay_board_serial_arduino.png" alt="8 Channel Relay Board - Serial Connection with Arduino" />
+        <p class="diagram-caption">Connect the Arduino Uno's Tx/Rx pins and 5V/GND to the relay board's serial header to control all 8 relays.</p>
+      </div>
+
+      <h3>Raspberry Pi</h3>
+      <div class="diagram-block">
+        <img class="diagram-image" src="../images/modules/relay_board_serial_raspberrypi.png" alt="8 Channel Relay Board - Serial Connection with Raspberry Pi" />
+        <p class="diagram-caption">Connect Raspberry Pi GPIO14 (TXD), GPIO7 (CE1) and ground to the relay board's TX, +5V and GND pins respectively.</p>
+      </div>
+
+      <h3>BeagleBone</h3>
+      <div class="diagram-block">
+        <img class="diagram-image" src="../images/modules/relay_board_serial_beaglebone.png" alt="8 Channel Relay Board - Serial Connection with BeagleBone" />
+        <p class="diagram-caption">Connect BeagleBone Serial5 TX/GPIO2_14 (P9 pin 37) and GND (P9 pin 45) to the relay board's TX, +5V and GND pins.</p>
+      </div>
+    </section>
+
+    <!-- ===== Package Contents ===== -->
+    <section class="content-section">
+      <h2>Package Contents</h2>
+      <ul>
+        <li>8 Channel Relay Board - Serial</li>
+      </ul>
+    </section>
+    </div>
+
+    <div class="tab-panel" id="tab-related">
+      <div class="card-grid">
+        <a href="usb-to-rs485-converter-module.html" class="product-card">
+          <div class="card-image"><img src="../images/modules/usb_rs485_main.jpg" alt="USB To RS485 Converter Module" /></div>
+          <div class="card-body"><h3>USB To RS485 Converter Module</h3><div class="order-code">Order Code: RDL/RSU/14/001/V1.0</div></div>
+        </a>
+        <a href="isolated-usb-to-rs485-adapter-909.html" class="product-card">
+          <div class="card-image"><img src="../images/modules/isolated_rs485_main.jpg" alt="Isolated USB to RS485 Adapter" /></div>
+          <div class="card-body"><h3>Isolated USB to RS485 Adapter</h3><div class="order-code">Order Code: RDL904</div></div>
+        </a>
+        <a href="rs485-rs232-modbus-ethernet-gateway.html" class="product-card">
+          <div class="card-image"><img src="../images/modules/modbus_tcp_gateway_main.jpg" alt="Modbus TCP Gateway" /></div>
+          <div class="card-body"><h3>Modbus TCP Gateway</h3><div class="order-code">Order Code: RDL799</div></div>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="../js/navbar.js"></script>
+  <script src="../js/tabs.js"></script>
+
+  <footer class="site-footer">
+    <div class="footer-copy">&copy; 2026 RDL Technologies. All rights reserved.</div>
+    <div class="footer-contact">
+      <a href="mailto:sales@rdltech.in">sales@rdltech.in</a>
+      <span>|</span>
+      <a href="tel:+918088423347">+91 8088423347</a>, <a href="tel:08242988407">0824 2988407</a>
+    </div>
+  </footer>
+</body>
+</html>
