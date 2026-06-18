@@ -24,12 +24,33 @@ document.addEventListener("DOMContentLoaded", function () {
   const mainImageEl = document.querySelector(".main-image img");
   if (!mainImageEl) return;
 
+  // Collect all gallery images: main + thumbnails (deduplicated by src)
+  let galleryImages = [];
+  let currentIndex = 0;
+
+  function buildGallery() {
+    const seen = new Set();
+    galleryImages = [];
+    // Always start with the current main image
+    const thumbs = document.querySelectorAll(".thumb-row img");
+    if (thumbs.length > 0) {
+      thumbs.forEach((t) => {
+        if (!seen.has(t.src)) { seen.add(t.src); galleryImages.push({ src: t.src, alt: t.alt }); }
+      });
+    } else {
+      galleryImages.push({ src: mainImageEl.src, alt: mainImageEl.alt });
+    }
+  }
+
   // Build lightbox DOM
   const overlay = document.createElement("div");
   overlay.className = "img-lightbox";
   overlay.innerHTML = `
     <div class="img-lightbox-inner">
       <button class="lightbox-close" aria-label="Close">&times;</button>
+      <button class="lightbox-nav lightbox-prev" aria-label="Previous image">&#8249;</button>
+      <button class="lightbox-nav lightbox-next" aria-label="Next image">&#8250;</button>
+      <div class="lightbox-counter"></div>
       <div class="lightbox-zoom-btns">
         <button class="lbz-btn" id="lbz-in" aria-label="Zoom in">+</button>
         <button class="lbz-btn" id="lbz-out" aria-label="Zoom out">&minus;</button>
@@ -43,6 +64,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const lbImg = overlay.querySelector(".lightbox-img");
   const imgWrap = overlay.querySelector(".lightbox-img-wrap");
+  const prevBtn = overlay.querySelector(".lightbox-prev");
+  const nextBtn = overlay.querySelector(".lightbox-next");
+  const counter = overlay.querySelector(".lightbox-counter");
 
   let scale = 1, minScale = 1, maxScale = 4;
   let originX = 0, originY = 0;
@@ -65,14 +89,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function resetZoom() {
     scale = 1; originX = 0; originY = 0;
+    lastTX = 0; lastTY = 0;
     applyTransform();
     lbImg.style.cursor = "default";
   }
 
-  function openLightbox(src, alt) {
+  function updateNavVisibility() {
+    prevBtn.style.display = galleryImages.length > 1 ? "flex" : "none";
+    nextBtn.style.display = galleryImages.length > 1 ? "flex" : "none";
+    counter.style.display = galleryImages.length > 1 ? "block" : "none";
+    counter.textContent = galleryImages.length > 1 ? `${currentIndex + 1} / ${galleryImages.length}` : "";
+  }
+
+  function showImage(index) {
+    currentIndex = (index + galleryImages.length) % galleryImages.length;
+    const { src, alt } = galleryImages[currentIndex];
     lbImg.src = src;
     lbImg.alt = alt;
     resetZoom();
+    updateNavVisibility();
+  }
+
+  function openLightbox(index) {
+    buildGallery();
+    showImage(index);
     overlay.classList.add("active");
     document.body.style.overflow = "hidden";
   }
@@ -82,9 +122,17 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.style.overflow = "";
   }
 
-  // Open on main image click
+  // Open on main image click — find index matching current src
   mainImageEl.style.cursor = "zoom-in";
-  mainImageEl.addEventListener("click", () => openLightbox(mainImageEl.src, mainImageEl.alt));
+  mainImageEl.addEventListener("click", () => {
+    buildGallery();
+    const idx = galleryImages.findIndex((g) => g.src === mainImageEl.src);
+    openLightbox(idx >= 0 ? idx : 0);
+  });
+
+  // Prev / Next buttons
+  prevBtn.addEventListener("click", (e) => { e.stopPropagation(); showImage(currentIndex - 1); });
+  nextBtn.addEventListener("click", (e) => { e.stopPropagation(); showImage(currentIndex + 1); });
 
   // Close button
   overlay.querySelector(".lightbox-close").addEventListener("click", closeLightbox);
@@ -94,9 +142,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (e.target === overlay) closeLightbox();
   });
 
-  // ESC key
+  // Keyboard navigation
   document.addEventListener("keydown", (e) => {
+    if (!overlay.classList.contains("active")) return;
     if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") showImage(currentIndex - 1);
+    if (e.key === "ArrowRight") showImage(currentIndex + 1);
   });
 
   // Zoom buttons
@@ -145,12 +196,15 @@ document.addEventListener("DOMContentLoaded", function () {
     lbImg.style.cursor = scale > 1 ? "grab" : "default";
   });
 
-  // Touch pinch zoom
+  // Touch pinch zoom + swipe navigation
   let lastDist = 0;
+  let touchStartX = 0;
   imgWrap.addEventListener("touchstart", (e) => {
     if (e.touches.length === 2) {
       lastDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX,
                             e.touches[0].clientY - e.touches[1].clientY);
+    } else if (e.touches.length === 1) {
+      touchStartX = e.touches[0].clientX;
     }
   }, { passive: true });
   imgWrap.addEventListener("touchmove", (e) => {
@@ -165,4 +219,11 @@ document.addEventListener("DOMContentLoaded", function () {
       clampOrigin(); applyTransform();
     }
   }, { passive: false });
+  imgWrap.addEventListener("touchend", (e) => {
+    if (scale > 1) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) {
+      dx < 0 ? showImage(currentIndex + 1) : showImage(currentIndex - 1);
+    }
+  }, { passive: true });
 });

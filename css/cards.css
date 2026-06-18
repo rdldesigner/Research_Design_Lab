@@ -72,7 +72,7 @@
   margin-bottom: 8px;
 }
 
-.product-card .card-body . {
+.product-card .card-body .price {
   font-size: 16px;
   font-weight: 700;
   color: #0b3d91;
@@ -148,7 +148,7 @@
   margin-bottom: 12px;
 }
 
-.product-info . {
+.product-info .price {
   font-size: 24px;
   font-weight: 700;
   color: #0b3d91;
@@ -367,6 +367,48 @@
 
 .lightbox-close:hover {
   background: rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  user-select: none;
+  line-height: 1;
+}
+
+.lightbox-nav:hover {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.lightbox-prev { left: 12px; }
+.lightbox-next { right: 12px; }
+
+.lightbox-counter {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 13px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  pointer-events: none;
 }
 
 .lightbox-zoom-btns {
